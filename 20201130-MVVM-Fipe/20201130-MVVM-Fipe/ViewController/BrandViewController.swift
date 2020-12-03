@@ -7,10 +7,10 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class BrandViewController: UIViewController {
 
-    var viewModel = MainViewModel()
-    var mainDelegateDataSource: MainTableViewDelegateDataSource?
+    var viewModel = BrandViewModel()
+    var brandDelegateDataSource: BrandTableViewDelegateDataSource?
 
     @IBOutlet var tableView: UITableView!
     
@@ -19,9 +19,9 @@ class MainViewController: UIViewController {
        getBrand()
     }
     func configureTableView() {
-        self.mainDelegateDataSource = MainTableViewDelegateDataSource(mainViewModel: self.viewModel)
-        self.tableView.delegate = mainDelegateDataSource
-        self.tableView.dataSource = mainDelegateDataSource        
+        self.brandDelegateDataSource = BrandTableViewDelegateDataSource(brandViewModel: self.viewModel)
+        self.tableView.delegate = brandDelegateDataSource
+        self.tableView.dataSource = brandDelegateDataSource
         self.tableView.reloadData()
     }
     

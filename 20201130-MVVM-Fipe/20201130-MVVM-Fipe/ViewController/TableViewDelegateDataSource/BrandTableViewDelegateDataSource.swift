@@ -8,22 +8,22 @@
 import Foundation
 import UIKit
 
-class MainTableViewDelegateDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
+class BrandTableViewDelegateDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    var mainViewModel =  MainViewModel()
+    var brandViewModel = BrandViewModel()
     
-    init(mainViewModel: MainViewModel){
-        self.mainViewModel = mainViewModel
+    init(brandViewModel: BrandViewModel){
+        self.brandViewModel = brandViewModel
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return mainViewModel.numberOfRows()
+        return brandViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as? MainTableViewCell {
-            let brand = mainViewModel.getCurrentBrand(currentObject: indexPath.row)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "BrandTableViewCell") as? BrandTableViewCell {
+            let brand = brandViewModel.getCurrentBrand(currentObject: indexPath.row)
             cell.setup(brand: brand)
             return cell
         }

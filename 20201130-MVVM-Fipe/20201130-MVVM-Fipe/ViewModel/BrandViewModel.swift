@@ -7,10 +7,9 @@
 
 import Foundation
 
-class MainViewModel {
-
-    let apiManager = APIManager()
-    let brandAPI = BrandAPI()
+class BrandViewModel {
+   
+    let api = API()
     var arrayBrands = [Brand]()
     
     var titlePage: String {
@@ -18,9 +17,9 @@ class MainViewModel {
     }
    
     func getBrand(completion: @escaping (Bool) -> Void) {
-        brandAPI.getBrand { [self] (success) in
+        api.getBrand { [self] (success) in
             if success {
-                self.arrayBrands = brandAPI.arrayBrands
+                self.arrayBrands = api.arrayBrands
                 completion(true)
             }
         }

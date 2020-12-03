@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+class BrandTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelContent: UILabel!
     override func awakeFromNib() {

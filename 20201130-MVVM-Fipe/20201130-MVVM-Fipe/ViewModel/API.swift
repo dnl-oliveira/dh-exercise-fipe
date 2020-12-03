@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class BrandAPI: NSObject {
+class   API: NSObject {
     
     let apiManager = APIManager()
     var arrayBrands = [Brand]()
@@ -48,43 +48,19 @@ class BrandAPI: NSObject {
         }
     }
     
-    func getModel(brand: Brand, completion: () -> Void ) {
-        apiManager.request(url: "\(Enviroment.apiBaseUrl)/carros/marcas/\(brand.id!)/modelos") { (json, jsonarray, errorStr) in
-            
-            if json != nil {
-                print("json dicionario")
+    func getModel(onComplete: @escaping (Bool) -> Void) {
+        AF.request("\(Enviroment.apiBaseUrl)/carros/marcas").responseJSON { response in
+            if let json = response.value as? [[String: Any]] {
+                var brands = [Brand]()
+                for item in json {
+                    brands.append(Brand(fromDictionary: item))
+                }
+                self.arrayBrands = brands
+                onComplete(true)
+                return
             }
-            
-            if jsonarray != nil {
-                print("json com array de dicionario ")
-            }
+            onComplete(false)
         }
     }
-    
-    func getModelYear(brand: Brand, model: Model, completion: () -> Void ) {
-        apiManager.request(url: "\(Enviroment.apiBaseUrl)/carros/marcas/\(brand.id!)/modelos/\(model.id!)/anos") { (json, jsonarray, errorStr) in
-            
-            if json != nil {
-                print("json dicionario")
-            }
-            
-            if jsonarray != nil {
-                print("json com array de dicionario ")
-            }
-        }
-    }
-    
-//    func getModelYear(brand: Brand, model: Model, completion: () -> Void ) {
-//        apiManager.request(url: "\(Enviroment.apiBaseUrl)/carros/marcas/\(brand.id!)/modelos/\(model.id!)/anos") { (json, jsonarray, errorStr) in
-//
-//            if json != nil {
-//                print("json dicionario")
-//            }
-//
-//            if jsonarray != nil {
-//                print("json com array de dicionario ")
-//            }
-//        }
-//    }
     
 }
